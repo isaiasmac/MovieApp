@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5vW-7Q-KRD">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--WalkthroughVC-->
+        <scene sceneID="iRc-CV-in7">
+            <objects>
+                <viewController id="5vW-7Q-KRD" customClass="WalkthroughVC" customModule="MovieApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fMa-ek-Pdq"/>
+                        <viewControllerLayoutGuide type="bottom" id="JEF-kI-yRZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mj5-87-FeW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Zz-Co-QPV">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JEF-kI-yRZ" firstAttribute="top" secondItem="5Zz-Co-QPV" secondAttribute="bottom" id="7H7-2f-wfJ"/>
+                            <constraint firstItem="5Zz-Co-QPV" firstAttribute="leading" secondItem="mj5-87-FeW" secondAttribute="leading" id="BzW-No-wwp"/>
+                            <constraint firstItem="5Zz-Co-QPV" firstAttribute="top" secondItem="mj5-87-FeW" secondAttribute="top" id="aob-Ls-MYI"/>
+                            <constraint firstAttribute="trailing" secondItem="5Zz-Co-QPV" secondAttribute="trailing" id="gqa-zY-6mo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="5Zz-Co-QPV" id="zqN-P4-6F9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="adH-MB-QOp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-50.399999999999999" y="9.4452773613193415"/>
+        </scene>
+    </scenes>
+</document>
