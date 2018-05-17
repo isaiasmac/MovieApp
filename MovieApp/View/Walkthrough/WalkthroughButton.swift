@@ -15,7 +15,19 @@ class WalkthroughButton: UIButton {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.setupUI()
+    }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    
+    func setupUI(){
         self.setImage(UIImage(named: "arrow_right"), for: .normal)
         self.tintColor = buttonColor
         self.titleLabel?.font = UIFont.systemFont(ofSize: 17.0)
@@ -29,24 +41,25 @@ class WalkthroughButton: UIButton {
         self.layer.cornerRadius = self.frame.size.width/6
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    /*
-        Override the layoutSubviews() function, this function needs
-         to be overridden rather than awakeFromNib, as at this point
-         it is possible to get the real size of the button
-     */
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    func setupGradientUI(title: String){
+        self.setTitle(title, for: .normal)
+        self.setTitleColor(UIColor.white, for: .normal)
+        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17.0)
+        self.setImage(nil, for: .normal)
+        self.titleEdgeInsets = UIEdgeInsets.zero
+        self.layer.borderWidth = 0
         
+        let topGradient = UIColor(red:0.98, green:0.62, blue:0.00, alpha:1.0)
+        let bottomGradient = UIColor(red:0.86, green:0.19, blue:0.41, alpha:1.0)
         
+        let gradientLayer = CAGradientLayer()
+        
+        gradientLayer.frame = self.bounds
+        gradientLayer.colors = [topGradient.cgColor, bottomGradient.cgColor]
+        gradientLayer.cornerRadius = self.layer.cornerRadius
+        gradientLayer.borderWidth = 0
+        gradientLayer.borderColor = UIColor.clear.cgColor
+        self.layer.insertSublayer(gradientLayer, at: 0)
     }
-    
 
 }

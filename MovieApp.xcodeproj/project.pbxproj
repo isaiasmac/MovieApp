@@ -16,6 +16,7 @@
 		6A87D23E20A55032001951A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A87D23C20A55032001951A5 /* LaunchScreen.storyboard */; };
 		6A87D24720A550C5001951A5 /* LaunchScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A87D24620A550C5001951A5 /* LaunchScreenVC.swift */; };
 		6A87D24A20A552D3001951A5 /* WalkthroughVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A87D24920A552D3001951A5 /* WalkthroughVC.swift */; };
+		6AEE668620ACFD810096F584 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE668520ACFD810096F584 /* MainTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		6A87D23F20A55032001951A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A87D24620A550C5001951A5 /* LaunchScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenVC.swift; sourceTree = "<group>"; };
 		6A87D24920A552D3001951A5 /* WalkthroughVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughVC.swift; sourceTree = "<group>"; };
+		6AEE668520ACFD810096F584 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				6A87D24920A552D3001951A5 /* WalkthroughVC.swift */,
+				6AEE668520ACFD810096F584 /* MainTabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			files = (
 				6A87D24A20A552D3001951A5 /* WalkthroughVC.swift in Sources */,
 				6A87D23420A55030001951A5 /* AppDelegate.swift in Sources */,
+				6AEE668620ACFD810096F584 /* MainTabBarController.swift in Sources */,
 				6A62372A20AA68AE006ECE8B /* WalkthroughButton.swift in Sources */,
 				6A87D24720A550C5001951A5 /* LaunchScreenVC.swift in Sources */,
 				6A62372D20AA9561006ECE8B /* WalkthroughView.swift in Sources */,

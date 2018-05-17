@@ -50,23 +50,12 @@ class WalkthroughVC: UIViewController {
             walkthroughView.pagesImage.image = UIImage(named: "\(page.pageImageName)\(pageNumber)")
             walkthroughView.nextButton.titleLabel?.text = NSLocalizedString("Next", comment: "")
             if index == PAGES.count - 1{
-                walkthroughView.nextButton.titleLabel?.text = "Get Started"
-                //walkthroughView.nextButton.backgroundColor = UIColor.red
-                //walkthroughView.nextButton.setBackgroundImage(UIImage(named: "get_started"), for: .normal)
-                
-                let topGradient = UIColor(red:0.98, green:0.62, blue:0.00, alpha:1.0)
-                let bottomGradient = UIColor(red:0.86, green:0.19, blue:0.41, alpha:1.0)
-                let gradientLayer = CAGradientLayer()
-                gradientLayer.frame = walkthroughView.nextButton.bounds
-                gradientLayer.colors = [topGradient.cgColor, bottomGradient.cgColor]
-                gradientLayer.cornerRadius = walkthroughView.nextButton.layer.cornerRadius
-                gradientLayer.borderWidth = 0
-                gradientLayer.borderColor = UIColor.clear.cgColor
-                walkthroughView.nextButton.layer.insertSublayer(gradientLayer, at: 0)
+                walkthroughView.nextButton.setupGradientUI(title: "Get Started")
             }
             walkthroughView.nextButton.pageNumber = pageNumber
             walkthroughView.delegate = self
             scrollView.addSubview(walkthroughView)
+            
             self.pagesViews.append(walkthroughView)
         }
         
@@ -90,7 +79,6 @@ extension WalkthroughVC: UIScrollViewDelegate{
         self.currentPage = currentPage + 1
         
     }
-
 }
 
 extension WalkthroughVC: WalkthroughDelegate{
@@ -98,8 +86,15 @@ extension WalkthroughVC: WalkthroughDelegate{
     func nextButtonDidPressed(pageNumber: Int) {
         self.currentPage = pageNumber
         
-        print("self.currentPag = \(self.currentPage) || PAGES.count - 1 = \(PAGES.count - 1) | PAGES.count = \(PAGES.count)")
         if pageNumber >= PAGES.count {
+            // Cerrar pantallas Walkthorugh
+            // Abrir Pantalla principal de peliculas
+            
+//            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//            let tabBarCtrl = mainStoryboard.instantiateViewController(withIdentifier: "tabBarCtrlID") as! UITabBarController
+//            UIApplication.shared.keyWindow?.rootViewController = tabBarCtrl
+            
+            self.dismiss(animated: true, completion: nil)
             return
         }
         
