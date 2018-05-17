@@ -53,7 +53,6 @@ class WalkthroughButton: UIButton {
         let bottomGradient = UIColor(red:0.86, green:0.19, blue:0.41, alpha:1.0)
         
         let gradientLayer = CAGradientLayer()
-        
         gradientLayer.frame = self.bounds
         gradientLayer.colors = [topGradient.cgColor, bottomGradient.cgColor]
         gradientLayer.cornerRadius = self.layer.cornerRadius
