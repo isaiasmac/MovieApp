@@ -16,6 +16,10 @@
 		6A87D23E20A55032001951A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A87D23C20A55032001951A5 /* LaunchScreen.storyboard */; };
 		6A87D24720A550C5001951A5 /* LaunchScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A87D24620A550C5001951A5 /* LaunchScreenVC.swift */; };
 		6A87D24A20A552D3001951A5 /* WalkthroughVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A87D24920A552D3001951A5 /* WalkthroughVC.swift */; };
+		6A9B9BC120AE5031003291DE /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B9BC020AE5031003291DE /* Cast.swift */; };
+		6A9B9BC320AE51C9003291DE /* MovieDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B9BC220AE51C9003291DE /* MovieDetailVC.swift */; };
+		6A9B9BC520AE9DEA003291DE /* ProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B9BC420AE9DEA003291DE /* ProfileTVC.swift */; };
+		6A9B9BC720AEA60A003291DE /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B9BC620AEA60A003291DE /* Constant.swift */; };
 		6AEE668620ACFD810096F584 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE668520ACFD810096F584 /* MainTabBarController.swift */; };
 		6AEE668920AD07A60096F584 /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE668820AD07A60096F584 /* UserDefaultsExtension.swift */; };
 		6AEE668E20AD15D20096F584 /* movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 6AEE668D20AD15D20096F584 /* movies.json */; };
@@ -52,6 +56,10 @@
 		6A87D23F20A55032001951A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A87D24620A550C5001951A5 /* LaunchScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenVC.swift; sourceTree = "<group>"; };
 		6A87D24920A552D3001951A5 /* WalkthroughVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughVC.swift; sourceTree = "<group>"; };
+		6A9B9BC020AE5031003291DE /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
+		6A9B9BC220AE51C9003291DE /* MovieDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailVC.swift; sourceTree = "<group>"; };
+		6A9B9BC420AE9DEA003291DE /* ProfileTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTVC.swift; sourceTree = "<group>"; };
+		6A9B9BC620AEA60A003291DE /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		6AEE668520ACFD810096F584 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		6AEE668820AD07A60096F584 /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
 		6AEE668D20AD15D20096F584 /* movies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies.json; sourceTree = "<group>"; };
@@ -138,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				6A87D23320A55030001951A5 /* AppDelegate.swift */,
+				6A9B9BC620AEA60A003291DE /* Constant.swift */,
 				6AEE668C20AD15BE0096F584 /* Model */,
 				6AEE668720AD06EC0096F584 /* Extensions */,
 				6A87D24820A552B6001951A5 /* Controller */,
@@ -168,6 +177,8 @@
 				6A87D24920A552D3001951A5 /* WalkthroughVC.swift */,
 				6AEE668520ACFD810096F584 /* MainTabBarController.swift */,
 				6AEE669520AD4B950096F584 /* MoviesTVC.swift */,
+				6A9B9BC220AE51C9003291DE /* MovieDetailVC.swift */,
+				6A9B9BC420AE9DEA003291DE /* ProfileTVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -186,6 +197,7 @@
 				6AEE668D20AD15D20096F584 /* movies.json */,
 				6AEE668F20AD35FC0096F584 /* MoviesModel.swift */,
 				6AEE669120AD38D30096F584 /* Movie.swift */,
+				6A9B9BC020AE5031003291DE /* Cast.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,17 +338,17 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MovieApp/Pods-MovieApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftSpinner/SwiftSpinner.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSpinner.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,12 +364,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AEE669A20AD6AE20096F584 /* PopularCell.swift in Sources */,
+				6A9B9BC720AEA60A003291DE /* Constant.swift in Sources */,
+				6A9B9BC320AE51C9003291DE /* MovieDetailVC.swift in Sources */,
 				6A87D24A20A552D3001951A5 /* WalkthroughVC.swift in Sources */,
+				6A9B9BC120AE5031003291DE /* Cast.swift in Sources */,
 				6A87D23420A55030001951A5 /* AppDelegate.swift in Sources */,
 				6AEE669620AD4B950096F584 /* MoviesTVC.swift in Sources */,
 				6AEE669020AD35FC0096F584 /* MoviesModel.swift in Sources */,
 				6AEE668620ACFD810096F584 /* MainTabBarController.swift in Sources */,
 				6AEE669220AD38D30096F584 /* Movie.swift in Sources */,
+				6A9B9BC520AE9DEA003291DE /* ProfileTVC.swift in Sources */,
 				6A62372A20AA68AE006ECE8B /* WalkthroughButton.swift in Sources */,
 				6AEE669420AD3F1A0096F584 /* NowCell.swift in Sources */,
 				6A87D24720A550C5001951A5 /* LaunchScreenVC.swift in Sources */,

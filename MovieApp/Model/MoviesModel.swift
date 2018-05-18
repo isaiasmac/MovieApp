@@ -11,8 +11,9 @@ import Alamofire
 import SwiftyJSON
 
 enum MovieKey: String {
-    case mid
+    case mid = "id"
     case movies
+    case movie
     case data
     case title
     case coverSmall = "small_cover_image"
@@ -20,6 +21,12 @@ enum MovieKey: String {
     case coverLarge = "large_cover_image"
     case year
     case rating
+    case summary
+    case url
+    case cast
+    case name
+    case characterName = "character_name"
+    case imageSmall = "url_small_image"
 }
 
 class MoviesModel{
@@ -62,21 +69,60 @@ class MoviesModel{
         }
     }
     
-    fileprivate func parseMoviesJson(json: [JSON]) -> [Movie]{
-        var movies: [Movie] = []
-        for m in json {
-            let movie = Movie()
-            movie.mId = m[MovieKey.mid.rawValue].intValue
-            movie.title = m[MovieKey.title.rawValue].stringValue
-            movie.cover_small = m[MovieKey.coverSmall.rawValue].stringValue
-            movie.cover_medium = m[MovieKey.coverMedium.rawValue].stringValue
-            movie.cover_large = m[MovieKey.coverLarge.rawValue].stringValue
-            movie.year = m[MovieKey.year.rawValue].intValue
-            movie.rating = m[MovieKey.rating.rawValue].doubleValue
+    func getMovieDetail(movieId: Int, completion: @escaping (Bool, Movie?) -> ()){
+        let url = "https://yts.am/api/v2/movie_details.json?movie_id=\(movieId)&with_cast=true"
+        Alamofire.request(url).responseJSON { response in
+            if let json = response.result.value {
+                let jsonObj = JSON(json)
+                let dataJson = jsonObj[MovieKey.data.rawValue]
+                let movieJson = dataJson[MovieKey.movie.rawValue]
+                
+                let movie = self.parseMovieJson(json: movieJson)
+                completion(true, movie)
+            }
+            else{
+                print("Error !! \(String(describing: response.error?.localizedDescription))")
+                completion(false, nil)
+            }
+        }
+    }
+    
+    fileprivate func parseMovieJson(json: JSON) -> Movie {
+        let movie = Movie()
+        movie.mId = json[MovieKey.mid.rawValue].intValue
+        movie.title = json[MovieKey.title.rawValue].stringValue
+        movie.coverSmall = json[MovieKey.coverSmall.rawValue].stringValue
+        movie.coverMedium = json[MovieKey.coverMedium.rawValue].stringValue
+        movie.coverLarge = json[MovieKey.coverLarge.rawValue].stringValue
+        movie.year = json[MovieKey.year.rawValue].intValue
+        movie.rating = json[MovieKey.rating.rawValue].double
+        movie.summary = json[MovieKey.summary.rawValue].string
+        movie.torrentUrl = json[MovieKey.url.rawValue].string
+        
+        if let castJson = json[MovieKey.cast.rawValue].array {
+            print("castJSON: \(castJson)")
+            var castArray: [Cast] = []
+            for c in castJson{
+                let name = c[MovieKey.name.rawValue].stringValue
+                let characterName = c[MovieKey.characterName.rawValue].stringValue
+                let imageSmall = c[MovieKey.imageSmall.rawValue].string
+                let cast = Cast(name: name, characterName: characterName)
+                cast.imageSmall = imageSmall
+                castArray.append(cast)
+            }
             
-            movies.append(movie)
+            movie.cast = castArray
         }
         
+        return movie
+    }
+    
+    fileprivate func parseMoviesJson(json: [JSON]) -> [Movie] {
+        var movies: [Movie] = []
+        for m in json {
+            let movie = self.parseMovieJson(json: m)
+            movies.append(movie)
+        }
         return movies
     }
     

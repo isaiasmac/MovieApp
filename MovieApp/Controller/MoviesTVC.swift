@@ -8,7 +8,6 @@
 
 import UIKit
 import Kingfisher
-import SwiftSpinner
 import PKHUD
 
 class MoviesTVC: UITableViewController {
@@ -24,11 +23,14 @@ class MoviesTVC: UITableViewController {
     var moviesNow: [Movie] = []
     var moviesPopular: [Movie] = []
     
+    let segueMovieDetail = "segueMovieDetail"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupCollectionViews()
         self.tableView.allowsSelection = false
+        self.tableView.backgroundColor = Constants.GLOBAL_COLOR
         
         HUD.show(.progress)
         
@@ -67,35 +69,34 @@ class MoviesTVC: UITableViewController {
             }
             c.showsHorizontalScrollIndicator = false
             c.isPagingEnabled = true
-            c.backgroundColor = UIColor.white
+            c.backgroundColor = UIColor.clear
         }
     }
     
-    
-//    // https://gist.github.com/benjaminsnorris/a19cb14082b28027d183
-//    fileprivate func snapToCenter() {
-//        let centerPoint = view.convert(view.center, to: collectionViewCarousel)
-//
-//        guard let centerIndexPath = collectionViewCarousel.indexPathForItem(at: centerPoint) else{
-//            return
-//        }
-//
-//        collectionViewCarousel.scrollToItem(at: centerIndexPath, at: .centeredHorizontally, animated: true)
-//    }
-//
-//    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        if let _ = scrollView as? UICollectionView {
-//            snapToCenter()
-//        }
-//    }
-//
-//    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        if let _ = scrollView as? UICollectionView {
-//            if !decelerate {
-//                snapToCenter()
-//            }
-//        }
-//    }
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == self.segueMovieDetail {
+            
+            guard let cell = sender as? UICollectionViewCell else {
+                return
+            }
+            
+            guard let movieDetailVC = segue.destination as? MovieDetailVC else{
+                return
+            }
+            
+            var indexPath : IndexPath = IndexPath()
+            if sender is NowCell {
+                indexPath = self.collectionViewNow .indexPath(for: cell)!
+                movieDetailVC.movieDetail = self.moviesNow[indexPath.item]
+            }
+            else if sender is PopularCell {
+                indexPath = self.collectionViewPopular .indexPath(for: cell)!
+                movieDetailVC.movieDetail = self.moviesPopular[indexPath.item]
+            }
+        }
+    }
+
 }
 
 
@@ -136,6 +137,14 @@ extension MoviesTVC: UICollectionViewDelegateFlowLayout{
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView != self.collectionViewCarousel {
+            let cell = collectionView.cellForItem(at: indexPath)
+            
+            performSegue(withIdentifier: self.segueMovieDetail, sender: cell)
+        }
+    }
+    
 }
 
 // MARK: - UICollectionView DataSource
@@ -164,7 +173,7 @@ extension MoviesTVC : UICollectionViewDataSource{
             
             let movie = moviesNow[indexPath.item]
             cell.titleLabel.text = movie.title.uppercased()
-            if let coverUrl = movie.cover_medium{
+            if let coverUrl = movie.coverMedium{
                 cell.coverImageView.kf.setImage(with: URL(string: coverUrl), placeholder: UIImage(named: "movie_placeholder"))
             }
             
@@ -175,7 +184,7 @@ extension MoviesTVC : UICollectionViewDataSource{
             let movie = moviesPopular[indexPath.item]
             
             cell.titleLabel.text = movie.title.uppercased()
-            if let coverUrl = movie.cover_medium{
+            if let coverUrl = movie.coverMedium{
                 cell.coverImageView.kf.setImage(with: URL(string: coverUrl), placeholder: UIImage(named: "movie_placeholder"))
             }
             cell.yearLabel.text = String(movie.year)

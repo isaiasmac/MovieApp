@@ -87,13 +87,6 @@ extension WalkthroughVC: WalkthroughDelegate{
         self.currentPage = pageNumber
         
         if pageNumber >= PAGES.count {
-            // Cerrar pantallas Walkthorugh
-            // Abrir Pantalla principal de peliculas
-            
-//            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//            let tabBarCtrl = mainStoryboard.instantiateViewController(withIdentifier: "tabBarCtrlID") as! UITabBarController
-//            UIApplication.shared.keyWindow?.rootViewController = tabBarCtrl
-            
             self.dismiss(animated: true, completion: nil)
             return
         }
