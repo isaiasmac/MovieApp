@@ -53,7 +53,8 @@ class MoviesModel{
     }
     
     func getMoviesOnline(limit: Int = 1, completion: @escaping (Bool, [Movie]?) -> ()) {
-        let url = "https://yts.am/api/v2/list_movies.json?limit=\(limit)"
+        //let url = "https://yts.am/api/v2/list_movies.json?limit=\(limit)"
+        let url = "\(Constants.API_URL)?limit=\(limit)"
         Alamofire.request(url).responseJSON { response in
             if let json = response.result.value {
                 let jsonObj = JSON(json)
@@ -70,7 +71,8 @@ class MoviesModel{
     }
     
     func getMovieDetail(movieId: Int, completion: @escaping (Bool, Movie?) -> ()){
-        let url = "https://yts.am/api/v2/movie_details.json?movie_id=\(movieId)&with_cast=true"
+        //let url = "https://yts.am/api/v2/movie_details.json?movie_id=\(movieId)&with_cast=true"
+        let url = "\(Constants.API_URL_DETAIL_MOVIE)movie_id=\(movieId)"
         Alamofire.request(url).responseJSON { response in
             if let json = response.result.value {
                 let jsonObj = JSON(json)
